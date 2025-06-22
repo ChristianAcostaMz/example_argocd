@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: k8-gitlab
+  namespace: argocd
+spec:
+  project: default
+
+  sources:
+    - repoURL: https://charts.gitlab.io/
+      chart: gitlab-agent
+      targetRevision: 18.1.0
+      helm:
+        valueFiles:
+          - $values/apps/k8-gitlab/values.yaml
+
+    - repoURL: https://github.com/ChristianAcostaMz/example_argocd.git
+      targetRevision: main
+      ref: values
+      path: apps/k8-gitlab
+      directory:
+        recurse: true
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: k8-gitlab
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
