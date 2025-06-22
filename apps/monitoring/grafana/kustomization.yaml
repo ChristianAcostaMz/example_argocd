@@ -4,8 +4,8 @@ kind: Kustomization
 helmCharts:
   - name: grafana
     repo: https://grafana.github.io/helm-charts
+    version: 7.3.9
     releaseName: grafana
     namespace: monitoring
-    version: 6.61.4
     valuesFile: grafana-values.yaml
 
