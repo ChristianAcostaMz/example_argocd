@@ -5,7 +5,7 @@ metadata:
   namespace: default
 spec:
   rules:
-  - host: flask-app.miusuario.duckdns.org  # Aquí defines el subdominio para acceder
+  - host: flask-app.ubuntuarm1.duckdns.org  # Aquí defines el subdominio para acceder
     http:
       paths:
       - path: /
