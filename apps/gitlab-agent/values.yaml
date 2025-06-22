@@ -3,4 +3,4 @@ image:
 
 config:
   token: "glagent-QSqvPaWxtyjFsRG3Ezd_Njz7b_e37PAiEs_z_vg4drv6TFWwsg"
-  kasAddress: "ws://192.168.0.15:8929/-/kubernetes-agent/"
+  kasAddress: "ws://192.168.0.15:8150/-/kubernetes-agent/"
