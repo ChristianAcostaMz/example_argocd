@@ -2,6 +2,7 @@ grafana:
   enabled: false  # ya lo instalaste por separado
 
 prometheus:
+  enabled: true  # ✅ ACTIVAMOS PROMETHEUS
   prometheusSpec:
     serviceMonitorSelectorNilUsesHelmValues: false
     podMonitorSelectorNilUsesHelmValues: false
