@@ -1,8 +1,11 @@
-alertmanager:
-  enabled: false
+grafana:
+  enabled: false  # Lo instalas por separado
 
-server:
+alertmanager:
+  enabled: true
   service:
     type: NodePort
-    nodePort: 30090
-  retention: 1d
+
+prometheus:
+  service:
+    type: NodePort
