@@ -1,23 +1,42 @@
-grafana:
-  enabled: false  # ya lo instalaste por separado
+# apps/prometheus/values.yaml
 
+# Desactivar Grafana (lo manejas por separado)
+grafana:
+  enabled: false
+
+# Habilitar Prometheus (necesario para crear pods y StatefulSet)
 prometheus:
-  enabled: true  # ✅ ACTIVAMOS PROMETHEUS
+  enabled: true
   prometheusSpec:
     serviceMonitorSelectorNilUsesHelmValues: false
     podMonitorSelectorNilUsesHelmValues: false
     retention: 7d
+    storageSpec:           # almacenamiento temporal, ajusta según tu entorno
+      volumeClaimTemplate:
+        spec:
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 1Gi
 
+# Habilitar Alertmanager
 alertmanager:
   enabled: true
   alertmanagerSpec:
     replicas: 1
 
+# Incluir las reglas predeterminadas
 defaultRules:
   create: true
 
+# Habilitar métricas del estado del cluster
 kubeStateMetrics:
   enabled: true
 
+# Desactivar nodeExporter para evitar PodSecurityPolicy
 nodeExporter:
   enabled: false
+
+# Incluir las CRD necesarias (o aplica manualmente)
+crds:
+  enabled: true
