@@ -1,0 +1,87 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-proxy-manager
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-proxy-manager
+  template:
+    metadata:
+      labels:
+        app: nginx-proxy-manager
+    spec:
+      containers:
+      - name: nginx-proxy-manager
+        image: jc21/nginx-proxy-manager:latest
+        ports:
+        - name: http
+          containerPort: 80
+        - name: https
+          containerPort: 443
+        - name: admin
+          containerPort: 81
+        volumeMounts:
+        - name: data
+          mountPath: /data
+        - name: letsencrypt
+          mountPath: /etc/letsencrypt
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: nginx-proxy-manager-data
+      - name: letsencrypt
+        persistentVolumeClaim:
+          claimName: nginx-proxy-manager-letsencrypt
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-proxy-manager
+  namespace: default
+spec:
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 80
+    - name: https
+      protocol: TCP
+      port: 443
+      targetPort: 443
+    - name: admin
+      protocol: TCP
+      port: 81
+      targetPort: 81
+  selector:
+    app: nginx-proxy-manager
+  type: LoadBalancer
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nginx-proxy-manager-data
+  namespace: default
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nginx-proxy-manager-letsencrypt
+  namespace: default
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
