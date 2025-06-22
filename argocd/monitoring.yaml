@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: prometheus-grafana
+  name: monitoring
   namespace: argocd
 spec:
   project: default
@@ -9,6 +9,8 @@ spec:
     repoURL: https://github.com/ChristianAcostaMz/example_argocd.git
     targetRevision: HEAD
     path: apps/monitoring
+    directory:
+      recurse: true  # 👈 Esto habilita el escaneo recursivo
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
@@ -16,5 +18,3 @@ spec:
     automated:
       prune: true
       selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
