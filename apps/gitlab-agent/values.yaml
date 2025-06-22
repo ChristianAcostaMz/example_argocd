@@ -2,5 +2,5 @@ image:
   tag: v18.1.0
 
 config:
-  token: "glagent-QSqvPaWxtyjFsRG3Ezd_Njz7b_e37PAiEs_z_vg4drv6TFWwsg"
-  kasAddress: "ws://192.168.0.15:8150/-/kubernetes-agent/"
+  token: glagent-uSb36Hejz6fWuCHs6XvdirgLHymRzrrftvoBU8ixXftmuWpQRQ
+  kasAddress: ws://192.168.0.15:8150/-/kubernetes-agent/
