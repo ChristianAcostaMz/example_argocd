@@ -8,8 +8,8 @@ spec:
 
   sources:
     - repoURL: https://prometheus-community.github.io/helm-charts
-      chart: kube-prometheus-stack
-      targetRevision: 58.1.0
+      chart: prometheus
+      targetRevision: 25.8.2
 
     - repoURL: https://github.com/ChristianAcostaMz/example_argocd.git
       targetRevision: main
