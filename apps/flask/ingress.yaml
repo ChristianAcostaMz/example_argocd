@@ -5,13 +5,13 @@ metadata:
   namespace: default
 spec:
   rules:
-  - host: flask-app.ubuntuarm1.duckdns.org  # Aquí defines el subdominio para acceder
+  - host: flask-app.ubuntuarm1.duckdns.org  # <--- ESTO ES CRÍTICO
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: flask  # Nombre de tu servicio de Flask en Kubernetes
+            name: flask
             port:
-              number: 80  # El puerto donde está expuesto el servicio de Flask
+              number: 80
