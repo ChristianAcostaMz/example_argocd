@@ -1,0 +1,25 @@
+adminUser: admin
+adminPassword: changeme
+
+service:
+  type: LoadBalancer
+
+persistence:
+  enabled: false
+
+dashboards:
+  default:
+    argo-cd:
+      gnetId: 14584
+      revision: 1
+      datasource: Prometheus
+
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+      - name: Prometheus
+        type: prometheus
+        url: http://prometheus-server.monitoring.svc.cluster.local
+        access: proxy
+        isDefault: true
