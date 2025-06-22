@@ -5,20 +5,29 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  source:
-    repoURL: https://grafana.github.io/helm-charts
-    chart: grafana
-    targetRevision: 7.3.10
-    helm:
-      valueFiles:
-        - apps/grafana/values.yaml
+
+  sources:
+    - repoURL: https://grafana.github.io/helm-charts
+      chart: grafana
+      targetRevision: 7.3.10
+
+    - repoURL: https://github.com/ChristianAcostaMz/example_argocd.git
+      targetRevision: main
+      ref: values
+
+  helm:
+    valueFiles:
+      - values://apps/grafana/values.yaml
+
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
+
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+
 
