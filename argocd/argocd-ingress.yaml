@@ -1,4 +1,3 @@
-# argocd/argocd-ingress.yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -6,8 +5,13 @@ metadata:
   namespace: argocd
   annotations:
     kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - argocd.local
+      secretName: argocd-tls  # Usa un secreto TLS válido (puede ser auto-firmado)
   rules:
     - host: argocd.local
       http:
@@ -18,6 +22,7 @@ spec:
               service:
                 name: argocd-server
                 port:
-                  number: 80
+                  number: 443
+
 
 
