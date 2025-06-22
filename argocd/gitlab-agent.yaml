@@ -1,29 +1,29 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: k8-gitlab
+  name: gitlab-agent-talos
   namespace: argocd
 spec:
   project: default
 
   sources:
-    - repoURL: https://charts.gitlab.io/
+    - repoURL: https://charts.gitlab.io
       chart: gitlab-agent
       targetRevision: 18.1.0
       helm:
         valueFiles:
-          - $values/apps/k8-gitlab/values.yaml
+          - $values/apps/gitlab-agent/values.yaml
 
     - repoURL: https://github.com/ChristianAcostaMz/example_argocd.git
       targetRevision: main
       ref: values
-      path: apps/k8-gitlab
+      path: apps/gitlab-agent
       directory:
         recurse: true
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: k8-gitlab
+    namespace: gitlab-agent-talos
 
   syncPolicy:
     automated:
