@@ -1,0 +1,17 @@
+# pod-localpath.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-test
+spec:
+  containers:
+    - name: busybox
+      image: busybox
+      command: ["sh", "-c", "sleep 3600"]
+      volumeMounts:
+        - mountPath: /data
+          name: testvol
+  volumes:
+    - name: testvol
+      persistentVolumeClaim:
+        claimName: test-pvc
