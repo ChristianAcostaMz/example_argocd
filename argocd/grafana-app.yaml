@@ -10,14 +10,13 @@ spec:
     - repoURL: https://grafana.github.io/helm-charts
       chart: grafana
       targetRevision: 7.3.10
+      helm:
+        valueFiles:
+          - $values/apps/grafana/values.yaml
 
     - repoURL: https://github.com/ChristianAcostaMz/example_argocd.git
       targetRevision: main
       ref: values
-
-  helm:
-    valueFiles:
-      - values://apps/grafana/values.yaml
 
   destination:
     server: https://kubernetes.default.svc
@@ -29,5 +28,3 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-
-
