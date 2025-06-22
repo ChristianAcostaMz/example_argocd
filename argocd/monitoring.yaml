@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: git@github.com:ChristianAcostaMz/example_argocd.git
+    repoURL: https://github.com/ChristianAcostaMz/example_argocd.git
     targetRevision: HEAD
     path: apps/monitoring
   destination:
