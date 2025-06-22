@@ -19,5 +19,5 @@ kubeStateMetrics:
   enabled: true
 
 nodeExporter:
-  enabled: false  # evitar errores con PodSecurity policies
+  enabled: true  # evitar errores con PodSecurity policies
 
