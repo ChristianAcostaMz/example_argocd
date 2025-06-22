@@ -1,0 +1,10 @@
+gitlabUrl: http://192.168.0.15:8929
+runnerRegistrationToken: "glrt-rcUu_LWfO2XC3TCplPWczHQ6MQp1OjEH.01.0w0cym3ro"
+
+rbac:
+  create: true
+
+runners:
+  privileged: true
+  tags: "k8s,cluster"
+  locked: false
