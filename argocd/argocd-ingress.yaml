@@ -10,10 +10,10 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - argocd.local
+        - argocd.ubuntuarm1.duckdns.org
       secretName: argocd-tls  # Usa un secreto TLS válido (puede ser auto-firmado)
   rules:
-    - host: argocd.local
+    - host: argocd.ubuntuarm1.duckdns.org
       http:
         paths:
           - path: /
