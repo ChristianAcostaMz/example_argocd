@@ -5,13 +5,13 @@ metadata:
   namespace: default
 spec:
   rules:
-  - host: flask-app.ubuntuarm1.duckdns.org  # <--- ESTO ES CRÍTICO
+  - host: flask-app.miusuario.duckdns.org  # <--- HOSTNAME CONSISTENTE
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: flask
+            name: flask # Debe coincidir con el nombre del Service
             port:
               number: 80
