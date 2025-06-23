@@ -5,7 +5,7 @@ metadata:
   namespace: default
 spec:
   rules:
-  - host: flask-app.miusuario.duckdns.org  # <--- HOSTNAME CONSISTENTE
+  - host: flask-app.ubuntuarm1.duckdns.org  # <--- HOSTNAME CONSISTENTE
     http:
       paths:
       - path: /
