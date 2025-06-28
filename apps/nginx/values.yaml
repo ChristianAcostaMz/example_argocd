@@ -1,6 +1,6 @@
 controller:
   service:
     type: LoadBalancer
-    annotations:
-      metallb.universe.tf/address-pool: local-pool
+  #  annotations:
+  #    metallb.universe.tf/address-pool: local-pool
 
