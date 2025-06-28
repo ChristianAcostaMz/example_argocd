@@ -5,33 +5,24 @@ metadata:
   namespace: argocd
   annotations:
     kubernetes.io/ingress.class: nginx
-    # **MUY IMPORTANTE:** Indica al Ingress Controller que hable con ArgoCD por HTTPS
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-    # Asegúrate de que el SSL se termine en el Ingress Controller (no pasar a Argo CD)
     nginx.ingress.kubernetes.io/ssl-passthrough: "false"
-    # Por defecto, Ingress Controller redirige HTTP a HTTPS. Con esta anotación, si
-    # alguien accede por HTTP, el Ingress Controller lo redirigirá a HTTPS.
-    # Puedes cambiarlo a "false" si REALMENTE quieres que HTTP sea accesible, pero no es lo ideal.
     nginx.ingress.ingress-nginx.kubernetes.io/ssl-redirect: "true"
-    # Esto habilita el HSTS, que es bueno para seguridad en HTTPS.
     nginx.ingress.ingress-nginx.kubernetes.io/hsts: "true"
 spec:
   ingressClassName: nginx
   rules:
-    - host: argocd.ubuntuarm1.duckdns.org
+    - host: argocd.homelab-cacom.duckdns.org
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: argocd-server  # Nombre del servicio de ArgoCD
+                name: argocd-server
                 port:
-                  number: 443 # ¡Cambia a 443! ArgoCD escucha en HTTPS
-  tls: # Este bloque habilita TLS/HTTPS en el Ingress
+                  number: 443
+  tls:
     - hosts:
-        - argocd.ubuntuarm1.duckdns.org
-      # Si no especificas secretName, Nginx Ingress Controller generará un certificado autofirmado por defecto
-      # (usualmente llamado por el host, o un secret por defecto como "default-http-backend-tls" si no se especifica)
-      # Para asegurarnos, puedes poner un nombre, y el controlador lo creará:
-      secretName: argocd-autogen-tls # El Ingress Controller creará este secret autofirmado
+        - argocd.homelab-cacom.duckdns.org
+      secretName: argocd-autogen-tls
