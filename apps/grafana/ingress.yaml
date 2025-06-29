@@ -8,7 +8,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: grafana.ubuntuarm1.duckdns.org
+    - host: grafana.cacom.me
       http:
         paths:
           - path: /
