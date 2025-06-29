@@ -1,6 +1,6 @@
 controller:
   service:
-    type: LoadBalancer
+    type: NodePort
   #  annotations:
   #    metallb.universe.tf/address-pool: local-pool
 
