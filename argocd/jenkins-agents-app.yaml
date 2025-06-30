@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: jenkins-agents # Nombre de la aplicación ArgoCD
+  namespace: argocd # El namespace donde se ejecuta ArgoCD
+spec:
+  project: default # El proyecto ArgoCD al que pertenece esta aplicación
+
+  sources:
+    # Fuente principal: tu propio repositorio donde están los manifiestos de los agentes
+    - repoURL: https://github.com/ChristianAcostaMz/example_argocd.git
+      targetRevision: main # La rama de tu repositorio que ArgoCD debe observar
+      path: apps/jenkins-agents # La ruta dentro de tu repositorio donde están los YAMLs de los agentes
+      directory:
+        recurse: true # Para que ArgoCD escanee todos los archivos YAML en esa carpeta
+
+  destination:
+    server: https://kubernetes.default.svc # Apunta al mismo clúster de Kubernetes
+    namespace: devops-tools # El namespace donde se desplegarán estos recursos de Jenkins
+
+  syncPolicy:
+    automated:
+      prune: true # Eliminar recursos que ya no estén en Git
+      selfHeal: true # Corregir desviaciones entre Git y el clúster
+    syncOptions:
+      - CreateNamespace=true # Asegurarse de que el namespace 'devops-tools' sea creado por ArgoCD
+      - ApplyOutOfSyncOnly=true # Opcional: solo aplica cambios si los recursos están desincronizados
