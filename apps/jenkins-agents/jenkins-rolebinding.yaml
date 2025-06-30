@@ -1,13 +1,13 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: jenkins-role-binding
-  namespace: devops-tools
+  name: jenkins-role-binding # Asegúrate de que el nombre sea este
+  namespace: devops-tools # ¡MUY IMPORTANTE!
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
   name: jenkins
 subjects:
 - kind: ServiceAccount
-  name: jenkins-admin
+  name: jenkins-admin # Referencia al nombre de tu ServiceAccount
   namespace: devops-tools
