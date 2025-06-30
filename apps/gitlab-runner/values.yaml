@@ -1,5 +1,5 @@
-gitlabUrl: http://192.168.0.15:8929
-runnerRegistrationToken: "glrt-rcUu_LWfO2XC3TCplPWczHQ6MQp1OjEH.01.0w0cym3ro"
+gitlabUrl: http://192.168.0.34
+runnerRegistrationToken: "glrt-f5NNj2dPFsTGPgA1Swzg-W86MQpwOjEKdDozCnU6MQ8.01.17013kbsx"
 
 rbac:
   create: true
